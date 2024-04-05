@@ -19,9 +19,9 @@ perspective.grid(
 
 \item{FUN}{the name of the function to be applied (d.grid, p.grid), default is 'd.grid'.}
 
-\item{u1}{indicates the place for lines on axis u1.}
+\item{u1}{indicates the place for lines on axis \eqn{u_1}.}
 
-\item{u2}{indicates the place for lines on axis u2.}
+\item{u2}{indicates the place for lines on axis \eqn{u_2}.}
 
 \item{ang.theta}{angle for the azimuthal direction.}
 
@@ -48,6 +48,11 @@ df <- cbind(u,v)
 k <- 10
 m <- 10
 copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ml")
+perspective.grid(gc = copula.grid, ang.theta = 90 , ang.phi = 80, distancia = 3)
+perspective.grid(gc = copula.grid, FUN = "p.grid")
+
+#Iris 
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = k, m = m , method = "ml")
 perspective.grid(gc = copula.grid, ang.theta = 90 , ang.phi = 80, distancia = 3)
 perspective.grid(gc = copula.grid, FUN = "p.grid")
 }

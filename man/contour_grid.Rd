@@ -2,29 +2,36 @@
 % Please edit documentation in R/contour_grid.R
 \name{contour_grid}
 \alias{contour_grid}
-\title{Draws the density / distribution function of a grid copula with contours}
+\title{Draws the density / distribution function of a grid copula with contours and colors}
 \usage{
-contour_grid(
-  gc,
+  contour_grid(gc,
   FUN = "d.grid",
-  u1 = seq(0, 1, length.out = 21),
-  u2 = seq(0, 1, length.out = 21)
-)
+  color.name = "none",
+  color.size = 7,
+  show.points = FALSE,
+  copula.domain = TRUE,
+  normal.marginal = TRUE)
 }
 \arguments{
 \item{gc}{a grid type copula object.}
 
-\item{FUN}{the name of the function to be applied (d.grid, p.grid), default is 'd.grid'.}
-
-\item{u1}{indicates the place for lines on axis u1.}
-
-\item{u2}{indicates the place for lines on axis u2.}
+\item{FUN}{the name of the function to be applied (d.grid for density, p.grid for distribution), default is 'd.grid'.}
+\item{color.name}{indicates the palette of colors}
+\item{color.size}{indicates the number of colors.}
+\item{show.points}{a logical value indicating if the data must be showed or
+not, default is FALSE.}
+\item{copula.domain}{Indicates whether it is going
+to be graphed in the domain of the copulas  \eqn{U(0,1)}
+or in the domain of the original of the variables.}
+\item{normal.marginal}{Indicates whether the marginals should be taken as normal distributions. The default 
+value is TRUE, otherwise the gaussian kernel is used as marginal distribution. This argument is neccesary 
+only if the argument copula.domain is FALSE.}
 }
 \value{
 Returns a graph of the density / distribution.
 }
 \description{
-Draws the density / distribution function of a grid copula with contours
+Draws the density / distribution function of a grid copula with contours and colors
 }
 \examples{
 n <- 500
@@ -39,6 +46,13 @@ df <- cbind(u,v)
 k <- 10
 m <- 10
 copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ml")
-contour_grid(gc = copula.grid, FUN = 'd.grid') 
-contour_grid(gc = copula.grid, FUN = 'p.grid') 
+contour_grid(gc = copula.grid, FUN = 'd.grid', color.name = "rainbow")
+contour_grid(gc = copula.grid, FUN = 'p.grid', color.name = "rainbow")
+
+#Iris
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = k, m = m , method = "ls")
+contour_grid(gc = copula.grid, FUN = 'd.grid', color.name= "rainbow",
+color.size = 10, copula.domain=FALSE)
+contour_grid(gc = copula.grid, FUN = 'p.grid', color.name = "rainbow",
+color.size = 10, copula.domain=FALSE)
 }

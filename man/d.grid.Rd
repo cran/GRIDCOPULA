@@ -7,9 +7,9 @@
 d.grid(U, V = NULL, gc)
 }
 \arguments{
-\item{U}{a matrix of size nx2 with the observed values. It can also be a vector of size kx1 with the values of the U1 variable.}
+\item{U}{a matrix of size \eqn{nx2} with the observed values. It can also be a vector of size \eqn{kx1} with the values of the \eqn{U_1} variable.}
 
-\item{V}{optional, a vector of size kx1 with the values of the U2 variable.}
+\item{V}{optional, a vector of size \eqn{kx1} with the values of the \eqn{U_2} variable.}
 
 \item{gc}{a grid type copula object.}
 }
@@ -20,6 +20,7 @@ Returns a vector with the corresponding density.
 Returns the corresponding density values of a grid type copula.
 }
 \examples{
+# Generating simulated data with a transformation to the copula domain
 n <- 500
 x <- rgamma(n,4,1/2)
 e <- rnorm(n,0,.3)
@@ -29,8 +30,10 @@ Fy <- ecdf(y)
 u <- Fx(x)
 v <- Fy(y)
 df <- cbind(u,v)
-k <- 5
-m <- 4
-copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ml")
+copula.grid <- estimate.gridCopula(U = df, k = 5, m = 4 , method = "ml")
 d.grid(df,gc=copula.grid)
+
+# Using the Iris dataset, transformation is not mandatory
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = 3, m = 7 , method = "ml")
+d.grid(copula.grid$U,gc=copula.grid)
 }

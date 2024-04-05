@@ -1,4 +1,4 @@
-#' @title Calculates the multiplication of normal densities
+#' @title Calculates the multiplication of gaussian kernel densities
 #' @description Returns a vector with the values of the product of densities.
 #' @param x a vector with the values of the variable x.
 #' @param y a vector with the values of the variable y.
@@ -7,9 +7,9 @@
 #' @examples
 
 
-normal.multiplication <- function(x, y, parameters=c(0,0,1,1)) {
-  f.x <- dnorm(x=x, mean=parameters[1], sd=parameters[3])
-  f.y <- dnorm(x=y, mean=parameters[2], sd=parameters[4])
+kernel.multiplication <- function(x, y, parameters) {
+  f.x <- dkden(x=x, kerncentres=parameters[[1]], bw=parameters[[3]])
+  f.y <- dkden(x=y, kerncentres=parameters[[2]], bw=parameters[[4]])
   value <- f.x * f.y
   return(value)
 }

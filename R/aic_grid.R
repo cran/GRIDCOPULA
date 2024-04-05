@@ -1,4 +1,4 @@
-#' @title Calculates the AIC of a grid type copula
+#' @title Calculates the Akaike Information Criterion "AIC" of a grid type copula
 #' @description This function receives a grid type copula as a parameter and returns the value of the AIC.
 #' @return Returns a number with the AIC of a grid type copula.
 #' @param gc a grid type copula object.
@@ -21,7 +21,7 @@
 
 
 aic.grid <- function(gc) {
-	mg<- gc
+  mg<- gc
   ll <- ll.grid(x=as.vector(mg$Density), y=as.vector(mg$Quantity))
   value <- -2*ll + (mg$m-1)*(mg$k-1)
   return(value)

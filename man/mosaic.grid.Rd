@@ -31,4 +31,8 @@ k <- 10
 m <- 10
 copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ml")
 mosaic.grid(gc = copula.grid, number.size = 5)
+
+#Iris
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = k, m = m , method = "ml")
+mosaic.grid(gc = copula.grid, number.size = 5)
 }

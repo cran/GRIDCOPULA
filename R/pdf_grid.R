@@ -9,16 +9,33 @@ pdf.grid <- function(u, mg) {
 
   k <- mg$k
   m <- mg$m
-  u.index <- ceiling(m*u[1])
-  v.index <- ceiling(k*u[2])
-  if(u.index==0) {
+  value <- 0
+  u1 <- round(x=u[1], digits=10)
+  u2 <- round(x=u[2], digits=10)
+  if(0<=u1 & u1<=1 & 0<=u2 & u2<=1) {
     u.index <- 1
-  }
-  if(v.index==0) {
+    if(0<u1) {
+      u.left <- round(x=((u.index-1) / m), digits=10)
+      u.right <- round(x=(u.index / m), digits=10)
+      while(u1<=u.left | u.right<u1) {
+        u.index <- u.index + 1
+        u.left <- u.right
+        u.right <- round(x=(u.index / m), digits=10)
+      }
+    }
     v.index <- 1
+    if(0<u2) {
+      v.left <- round(x=((v.index-1) / k), digits=10)
+      v.right <- round(x=(v.index / k), digits=10)
+      while(u2<=v.left | v.right<u2) {
+        v.index <- v.index + 1
+        v.left <- v.right
+        v.right <- round(x=(v.index / k), digits=10)
+      }
+    }
+    index.column <- u.index
+    index.row <- 1 - (v.index-k)
+    value <- mg$Density[index.row, index.column]
   }
-  index.column <- u.index
-  index.row <- 1 - (v.index-k)
-  value <- mg$Density[index.row, index.column]
   return(value)
 }

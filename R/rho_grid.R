@@ -17,21 +17,12 @@
 #' rho.grid(gc = copula.grid)
 #' @export
 
-
 rho.grid <- function(gc) {
-	mg<- gc
-  k <- mg$k
-  m <- mg$m
-  v.breaks <- seq(0, 1, length.out=k+1)
-  u.breaks <- seq(0, 1, length.out=m+1)
-  value <- 0
-  for(i in 1:k) {
-    for(j in 1:m) {
-      value <- value + integral2(rho.integrand.grid, u.breaks[j], 
-                                 u.breaks[j+1], v.breaks[i], v.breaks[i+1], 
-                                 gc=mg)$Q
-    }
-  }
-  value <- 12*value - 3
-  return(value)
+	k <- gc$k
+	m <- gc$m
+	u1 <- seq((1/m)/2,1,1/m)
+	u2 <- seq((1/k)/2,1,1/k)
+	C <- outer(u1,u2,p.grid, gc = gc)
+	value <- 12 * (sum((1 /(m * k)) * C) - 1/4)
+	return(value)
 }

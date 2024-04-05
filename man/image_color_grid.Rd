@@ -33,4 +33,8 @@ k <- 10
 m <- 10
 copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ml")
 image_color_grid(gc = copula.grid, color.name = "rainbow", color.size = 10)
+
+#Iris
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = k, m = m , method = "ml")
+image_color_grid(gc = copula.grid, color.name = "rainbow", color.size = 10)
 }

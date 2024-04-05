@@ -7,13 +7,13 @@
 data.grid(U, draw.lines = TRUE, k = 4, m = 4)
 }
 \arguments{
-\item{U}{matrix of size kx2 with the values of both variables.}
+\item{U}{matrix of size \eqn{kx2} with the values of both variables.}
 
 \item{draw.lines}{draws lines inside the unit square or not.}
 
-\item{k}{positive integer indicating the number of subintervals for the U2 variable.}
+\item{k}{positive integer indicating the number of subintervals for the \eqn{U_2} variable.}
 
-\item{m}{positive integer indicating the number of subintervals for the U1 variable.}
+\item{m}{positive integer indicating the number of subintervals for the \eqn{U_1} variable.}
 }
 \value{
 Returns a scatter plot of bivariate data in the unit square.

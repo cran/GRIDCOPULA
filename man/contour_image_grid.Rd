@@ -18,9 +18,9 @@ contour_image_grid(
 
 \item{FUN}{the name of the function to be applied (d.grid, p.grid), default is 'p.grid'.}
 
-\item{u1}{indicates the place for lines on axis u1.}
+\item{u1}{indicates the place for lines on axis \eqn{u_1}.}
 
-\item{u2}{indicates the place for lines on axis u2.}
+\item{u2}{indicates the place for lines on axis \eqn{u_2}.}
 
 \item{color.name}{indicates the palette of colors.}
 
@@ -45,6 +45,11 @@ df <- cbind(u,v)
 k <- 10
 m <- 10
 copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ls")
+contour_image_grid(gc = copula.grid, FUN = 'd.grid', color.name= "rainbow", color.size = 10)
+contour_image_grid(gc = copula.grid, FUN = 'p.grid', color.name = "rainbow", color.size = 10)
+
+#Iris
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = k, m = m , method = "ls")
 contour_image_grid(gc = copula.grid, FUN = 'd.grid', color.name= "rainbow", color.size = 10)
 contour_image_grid(gc = copula.grid, FUN = 'p.grid', color.name = "rainbow", color.size = 10)
 }

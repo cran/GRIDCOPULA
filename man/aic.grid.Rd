@@ -2,7 +2,7 @@
 % Please edit documentation in R/aic_grid.R
 \name{aic.grid}
 \alias{aic.grid}
-\title{Calculates the AIC of a grid type copula}
+\title{Calculates the Akaike Information Criterion "AIC" of a grid type copula}
 \usage{
 aic.grid(gc)
 }
@@ -16,6 +16,7 @@ Returns a number with the AIC of a grid type copula.
 This function receives a grid type copula as a parameter and returns the value of the AIC.
 }
 \examples{
+# Generating simulated data with a transformation to the copula domain 
 n <- 500
 x <- rgamma(n,4,1/2)
 e <- rnorm(n,0,.3)
@@ -25,8 +26,10 @@ Fy <- ecdf(y)
 u <- Fx(x)
 v <- Fy(y)
 df <- cbind(u,v)
-k <- 5
-m <- 4
-copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ml")
+copula.grid <- estimate.gridCopula(U = df, k = 5, m = 4 , method = "ml")
+aic.grid(copula.grid)
+
+# Using the Iris dataset, transformation is not mandatory
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = 3, m = 7 , method = "ml")
 aic.grid(copula.grid)
 }

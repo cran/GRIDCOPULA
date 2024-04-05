@@ -5,7 +5,8 @@
 \title{Estimates the parameters of a grid type copula}
 \usage{
 estimate.gridCopula(
-  U,
+  X = NULL,
+  U = NULL,
   k = NULL,
   m = NULL,
   method = "ml",
@@ -14,27 +15,30 @@ estimate.gridCopula(
 )
 }
 \arguments{
-\item{U}{a matrix of size nx2 with the observed values.}
+\item{X}{a matrix of size \eqn{nx2} with the observed values in any domain, optional if \eqn{U} is provided.}
 
-\item{k}{positive integer indicating the number of subintervals for the U2 variable.}
+\item{U}{a matrix of size \eqn{nx2} with the observed values in the copula domain, optional if \eqn{X} is provided.}
 
-\item{m}{positive integer indicating the number of subintervals for the U1 variable.}
+\item{k}{a positive integer indicating the number of subintervals for the \eqn{U_2} variable.}
 
-\item{method}{Method that uses, least squares "ls" or maximum likelihood "ml", by default "ml".}
+\item{m}{a positive integer indicating the number of subintervals for the \eqn{U_1} variable.}
 
-\item{D.ini}{a matrix with the initial values for the density copula.package: the name of the package for numerical optimization.}
+\item{method}{the selected method for estimation, can be least squares "ls" or maximum likelihood "ml". By default "ml".}
 
-\item{criterion}{If the values of k i m are not specified, they will be obtained by the "AIC" or "BIC" criteria, by default "AIC".}
+\item{D.ini}{an optional matrix with initial density values for the estimation through maximum likelihood.}
+
+\item{criterion}{If the values of k and m are not specified, they will be obtained by the "AIC" or "BIC" criteria, by default "AIC".}
 }
 \value{
 Returns a list with a matrix with the density over the grid,
-a matrix with the quantity of data over the grid, the number of subintervals for the U2 variable,
-the number of subintervals for the U1 variable.
+a matrix with the quantity of data over the grid, the number of subintervals for the \eqn{U_2} variable,
+the number of subintervals for the \eqn{U_1} variable, a matrix with the values of \eqn{u_1} and \eqn{u_2} in the copula domain and a matrix with the original values X.
 }
 \description{
 This function estimates grid type copulas by one of the following methods: maximum likelihood or least squares (See reference).
 }
 \examples{
+# Generating simulated data with a transformation to the copula domain
 n <- 500
 x <- rgamma(n,4,1/2)
 e <- rnorm(n,0,.3)
@@ -44,21 +48,17 @@ Fy <- ecdf(y)
 u <- Fx(x)
 v <- Fy(y)
 df <- cbind(u,v)
-k <- 5
-m <- 4
-copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ml")
+copula.grid <- estimate.gridCopula(U = df, k = 5, m = 4 , method = "ml")
+print(copula.grid$Density)
+
+# Using the Iris dataset, transformation is not mandatory
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = 3, m = 7 , method = "ml")
 print(copula.grid$Density)
 }
 \references{
-{@misc{https://doi.org/10.48550/arxiv.2010.15709,
-doi = {10.48550/ARXIV.2010.15709},
-url = {https://arxiv.org/abs/2010.15709},
-author = {Pfeifer, Dietmar and Strassburger, Doreen and Philipps, Joerg},
-keywords = {Methodology (stat.ME), Risk Management (q-fin.RM), FOS: Computer and information sciences, FOS: Computer and information sciences, FOS: Economics and business, FOS: Economics and business, 62H05, 62H12, 62H17, 11K45},
-title = {Modelling and simulation of dependence structures in nonlife insurance with Bernstein copulas},
-publisher = {arXiv},
-year = {2020},
-copyright = {arXiv.org perpetual, non-exclusive license}
-}
+{
+Pfeifer, D., Strassburger, D., & Philipps, J. (2020). 
+Modelling and simulation of dependence structures in nonlife insurance with Bernstein copulas. 
+\emph{arXiv}. Retrieved from \url{https://arxiv.org/abs/2010.15709}
 }
 }

@@ -12,12 +12,13 @@ r.grid(n, gc)
 \item{gc}{a grid type copula object.}
 }
 \value{
-Returns a  matrix of size nx2 with the random sample.
+Returns a  matrix of size  \eqn{nx2} with the random sample.
 }
 \description{
 Generates a random sample from a grid type copula
 }
 \examples{
+# Generating simulated data with a transformation to the copula domain
 n <- 500
 x <- rgamma(n,4,1/2)
 e <- rnorm(n,0,.3)
@@ -27,10 +28,14 @@ Fy <- ecdf(y)
 u <- Fx(x)
 v <- Fy(y)
 df <- cbind(u,v)
-k <- 15
-m <- 15
-copula.grid <- estimate.gridCopula(U = df, k = k, m = m , method = "ml")
+copula.grid <- estimate.gridCopula(U = df, k = 15, m = 15 , method = "ml")
 df2 <- r.grid(n = n, gc = copula.grid)
-data.grid(df, k=k, m=m)
-data.grid(df2, k=k, m=m)
+data.grid(copula.grid$U, k = 15, m = 15)
+data.grid(df2, k = 15, m = 15)
+
+# Using the Iris dataset, transformation is not mandatory
+copula.grid <- estimate.gridCopula(X = iris[,1:2], k = 3, m = 7 , method = "ml")
+df2 <- r.grid(n = n, gc = copula.grid)
+data.grid(copula.grid$U, k = 3, m = 7)
+data.grid(df2, k = 3, m = 7)
 }
