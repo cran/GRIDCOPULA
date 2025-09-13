@@ -25,11 +25,12 @@ measures.grid <- function(gc,measures = "all") {
   measures_f <- list(
     "gini" = gini.grid,
     "blomqvist" = blomqvist.grid,
-    "tail_U" = tailU.grid,
     "tail_L" = tailL.grid,
+    "tail_U" = tailU.grid,
     "rho" = rho.grid,
     "tau" = tau.grid,
-    "mi" = mi.grid
+    "mi" = mi.grid,
+    "schweizer" = schweizer.grid
   )
 
   if(measures[1] != "all"){

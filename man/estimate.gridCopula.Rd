@@ -23,7 +23,7 @@ estimate.gridCopula(
 
 \item{m}{a positive integer indicating the number of subintervals for the \eqn{U_1} variable.}
 
-\item{method}{the selected method for estimation, can be least squares "ls" or maximum likelihood "ml". By default "ml".}
+\item{method}{The method selected for the estimation, can be least squares "ls"", maximum likelihood "ml" or penalized maximum likelihood "pml". By default "ml".}
 
 \item{D.ini}{an optional matrix with initial density values for the estimation through maximum likelihood.}
 

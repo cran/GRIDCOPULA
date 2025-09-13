@@ -32,7 +32,8 @@ calculate.ml <- function(U, k, m, D.ini=NULL) {
   
   # Rsolnp package
   value <- solnp(pars=x0, fun=objective.grid, eqfun=equalities.grid,
-                 eqB=c(rep(k,m),rep(m,(k-1))), LB=rep(0,m*k), UB=rep(min(k,m),m*k), A=Qm)
+                 eqB=c(rep(k,m),rep(m,(k-1))), LB=rep(0,m*k),
+                 UB=rep(min(k,m),m*k), A=Qm, control = list(trace = 0) )
   Dm <- matrix(value$pars, nrow=k, ncol=m)
   
   return(list(Density=Dm, Quantity=Qm, m=m, k=k))
