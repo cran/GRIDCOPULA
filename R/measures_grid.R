@@ -30,7 +30,7 @@ measures.grid <- function(gc,measures = "all") {
     "rho" = rho.grid,
     "tau" = tau.grid,
     "mi" = mi.grid,
-    "schweizer" = schweizer.grid
+    "schweizer" = schweizer.grid_segura
   )
 
   if(measures[1] != "all"){

@@ -27,13 +27,13 @@ mi.grid <- function(gc) {
   value <- 0
   for(i in 1:k) {
     for(j in 1:m) {
-      if( 0<mg$Density[i,j] ) {
+      if( 0 < mg$Density[i,j] ) {
         value <- value + ( mg$Density[i,j] * log(mg$Density[i,j]) )
       } else {
         if( mg$Density[i,j]==0 ) {
           value <- value + 0
         } else {
-          value <- value -Inf
+          value <- value - Inf
         }
       }
     }

@@ -22,3 +22,12 @@ schweizer.grid <- function(gc){
   return(12*value)
 }
 
+
+schweizer.grid_segura <- function(gc){
+  tryCatch(
+    schweizer.grid(gc),
+    error = function(e) NA,
+    warning = function(w) NA
+  )
+}
+

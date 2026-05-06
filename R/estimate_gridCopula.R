@@ -102,7 +102,7 @@ estimate.gridCopula <- function(X=NULL, U=NULL, k=NULL, m=NULL, method="ml",
 	  k <- round(k,0)
 	  m <- round(m,0)
 	  result <- calculate.ml(U=U, k=k, m=m, D.ini=D.ini)
-	}else{
+	}else if(method=="pml"){
 	  XIC <- c()
 	  if(is.null(k) & is.null(m)) {
 	    for(i in 2:20) {
@@ -123,6 +123,27 @@ estimate.gridCopula <- function(X=NULL, U=NULL, k=NULL, m=NULL, method="ml",
 	  k <- round(k,0)
 	  m <- round(m,0)
 	  result <- calculate.pml(U=U, k=k, m=m, D.ini=D.ini)
+	} else{
+	  XIC <- c()
+	  if(is.null(k) & is.null(m)) {
+	    for(i in 2:20) {
+	      copula <- calculate_lsq2(U=U, k=i, m=i)
+	      if(criterion == "AIC") {
+	        XIC[i-1] <- aic.grid(copula)
+	      } else if(criterion == "BIC") {
+	        XIC[i-1] <- bic.grid(copula)
+	      }
+	    }
+	    k <- which.min(XIC)+1
+	    m <- k
+	  } else if(!is.null(k) & is.null(m)) {
+	    m <- k
+	  } else if(is.null(k) & !is.null(m)) {
+	    k <- m
+	  }
+	  k <- round(k,0)
+	  m <- round(m,0)
+	  result <- calculate_lsq2(U=U, k=k, m = m)
 	}
   result$X = X
   result$U = U

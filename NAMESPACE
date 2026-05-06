@@ -13,10 +13,10 @@ export(r.grid)
 export(measures.grid)
 import(Rsolnp)
 import(fields)
-import(quadprog)
 import(ggplot2)
 import(pracma)
 import(reshape2)
+importFrom(limSolve,lsei)
 importFrom("grDevices", "cm.colors", "gray", "heat.colors", "rainbow",
                "terrain.colors", "topo.colors")
 importFrom("graphics", "abline", "axis", "contour", "filled.contour",

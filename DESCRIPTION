@@ -2,7 +2,7 @@ Package: GRIDCOPULA
 Type: Package
 Title: Bivariate Copula Functions Based on Regular Grid
 Description: Estimates grid type bivariate copula functions, calculates some association measures and provides several copula graphics.
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: c(person(given="Rogelio", family="Salinas Gutiérrez", role = c("aut", "cre", "cph"),
                     email = "rsalinas@correo.uaa.mx", comment = c(ORCID = "0000-0002-1669-4460")),
                     person(given="Angélica", family="Hernández Quintero", role = c("aut", "cph"), comment = c(ORCID = "0009-0000-0400-1244")),
@@ -10,9 +10,9 @@ Authors@R: c(person(given="Rogelio", family="Salinas Gutiérrez", role = c("aut"
 		   comment = c(ORCID = "0009-0002-3497-210X")))
 License: GPL-3
 Encoding: UTF-8
-Packaged: 2025-09-12 18:56:50 UTC; rogel
+Packaged: 2026-05-05 14:36:09 UTC; rogel
 RoxygenNote: 7.2.1
-Imports: Rsolnp, fields, quadprog, ggplot2, pracma, reshape2, evmix
+Imports: Rsolnp, fields, limSolve, ggplot2, pracma, reshape2, evmix
 NeedsCompilation: no
 Author: Rogelio Salinas Gutiérrez [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0002-1669-4460>),
@@ -22,4 +22,4 @@ Author: Rogelio Salinas Gutiérrez [aut, cre, cph] (ORCID:
     <https://orcid.org/0009-0002-3497-210X>)
 Maintainer: Rogelio Salinas Gutiérrez <rsalinas@correo.uaa.mx>
 Repository: CRAN
-Date/Publication: 2025-09-13 22:40:12 UTC
+Date/Publication: 2026-05-06 05:10:45 UTC
